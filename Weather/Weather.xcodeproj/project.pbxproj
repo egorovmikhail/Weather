@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8156CD06258A500B004F6159 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8156CD05258A500B004F6159 /* Alamofire */; };
+		8156CD0D258A569D004F6159 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8156CD0C258A569D004F6159 /* Realm */; };
+		8156CD0F258A569D004F6159 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8156CD0E258A569D004F6159 /* RealmSwift */; };
+		8156CD12258A5891004F6159 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156CD11258A5891004F6159 /* WeatherService.swift */; };
 		817A54A8258A21AB003165F3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A54A7258A21AB003165F3 /* GradientView.swift */; };
 		81BB78EF2588CF1800BFC4A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB78EE2588CF1800BFC4A1 /* AppDelegate.swift */; };
 		81BB78F32588CF1800BFC4A1 /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB78F22588CF1800BFC4A1 /* LoginFormController.swift */; };
@@ -23,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8156CD11258A5891004F6159 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		817A54A7258A21AB003165F3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81BB78EB2588CF1800BFC4A1 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BB78EE2588CF1800BFC4A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8156CD0F258A569D004F6159 /* RealmSwift in Frameworks */,
+				8156CD0D258A569D004F6159 /* Realm in Frameworks */,
+				8156CD06258A500B004F6159 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +98,7 @@
 				81BB78EE2588CF1800BFC4A1 /* AppDelegate.swift */,
 				81BB78F22588CF1800BFC4A1 /* LoginFormController.swift */,
 				81BB78F92588CF1A00BFC4A1 /* LaunchScreen.storyboard */,
+				8156CD11258A5891004F6159 /* WeatherService.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -128,6 +137,11 @@
 			dependencies = (
 			);
 			name = Weather;
+			packageProductDependencies = (
+				8156CD05258A500B004F6159 /* Alamofire */,
+				8156CD0C258A569D004F6159 /* Realm */,
+				8156CD0E258A569D004F6159 /* RealmSwift */,
+			);
 			productName = Weather;
 			productReference = 81BB78EB2588CF1800BFC4A1 /* Weather.app */;
 			productType = "com.apple.product-type.application";
@@ -155,6 +169,10 @@
 				Base,
 			);
 			mainGroup = 81BB78E22588CF1800BFC4A1;
+			packageReferences = (
+				8156CD04258A500B004F6159 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				8156CD0B258A569D004F6159 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 81BB78EC2588CF1800BFC4A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +202,7 @@
 			files = (
 				81CF6ECC2589A3EA007450AF /* AllCityesCell.swift in Sources */,
 				81BB78F32588CF1800BFC4A1 /* LoginFormController.swift in Sources */,
+				8156CD12258A5891004F6159 /* WeatherService.swift in Sources */,
 				81EC2E1E258A2E84000CF620 /* WeekDayPicker.swift in Sources */,
 				81CF6EC82589A3CA007450AF /* AllCityesViewController.swift in Sources */,
 				81CF6ED02589A589007450AF /* WeatherCell.swift in Sources */,
@@ -393,6 +412,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8156CD04258A500B004F6159 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+		8156CD0B258A569D004F6159 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8156CD05258A500B004F6159 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8156CD04258A500B004F6159 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		8156CD0C258A569D004F6159 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8156CD0B258A569D004F6159 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		8156CD0E258A569D004F6159 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8156CD0B258A569D004F6159 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 81BB78E32588CF1800BFC4A1 /* Project object */;
 }
