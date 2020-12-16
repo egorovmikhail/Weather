@@ -9,7 +9,19 @@ import UIKit
 
 class AllCityesViewController: UIViewController {
 
-  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var tableView: UITableView!{
+    didSet{
+      tableView.dataSource = self
+    }
+  }
+  
+  var cities = [
+          "Moscow",
+          "Krasnoyarsk",
+          "London",
+          "Paris"
+      ]
+
   
   override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,4 +40,23 @@ class AllCityesViewController: UIViewController {
     }
     */
 
+}
+
+extension AllCityesViewController: UITableViewDataSource {
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return cities.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "AllCityesCell", for: indexPath) as! AllCityesCell
+    cell.cityName.text = cities[indexPath.row]
+    
+    return cell
+  }
+    
 }
