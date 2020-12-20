@@ -61,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		816B9DD9258F6350006C1110 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				813DCE2C258B6F26008232BB /* Weather.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		81BB78E22588CF1800BFC4A1 = {
 			isa = PBXGroup;
 			children = (
@@ -92,9 +100,9 @@
 				81BB78ED2588CF1800BFC4A1 /* Weather */,
 				81FDBFD72589A03C00056413 /* MyCityes */,
 				81FDBFD82589A0A600056413 /* AllCityes */,
+				816B9DD9258F6350006C1110 /* Model */,
 				81BB78F72588CF1A00BFC4A1 /* Assets.xcassets */,
 				81BB78F42588CF1800BFC4A1 /* Main.storyboard */,
-				813DCE2C258B6F26008232BB /* Weather.swift */,
 				81BB78FC2588CF1A00BFC4A1 /* Info.plist */,
 				81EC2E1D258A2E84000CF620 /* WeekDayPicker.swift */,
 				817A54A7258A21AB003165F3 /* GradientView.swift */,

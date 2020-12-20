@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
 class WeatherService {
   // базовый URL сервиса
@@ -15,7 +16,7 @@ class WeatherService {
   let apiKey = "8eb2bf7c277416368b75c686b2484892"
   
   // метод для загрузки данных, в качестве аргументов получает город
-  func loadWeatherData(city: String, completion: @escaping ([Weather]) -> ()){
+  func loadWeatherData(city: String, completion: @escaping () -> ()){
     
     // путь для получения погоды за 5 дней
     let path = "/data/2.5/forecast"
@@ -37,9 +38,24 @@ class WeatherService {
     { repsonse in
       guard let data = repsonse.value else {return}
       let weather = try! JSONDecoder().decode(WeatherResponse.self, from: data).list
-      completion(weather)
+      weather.forEach{$0.city = city}
+      saveWeatherData(weather, city)
+      completion()
     }
     
+    func saveWeatherData(_ weathers: [Weather], _ city: String) {
+      do {
+        let realm = try Realm()
+        let oldWeathers = realm.objects(Weather.self).filter("city == %@", city)
+        realm.beginWrite()
+        realm.delete(oldWeathers)
+        realm.add(weathers)
+        try realm.commitWrite()
+        print(realm.configuration.fileURL!)
+      } catch {
+        print(error)
+      }
+    }
   }
 }
 
