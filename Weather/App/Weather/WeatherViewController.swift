@@ -9,8 +9,6 @@ import UIKit
 
 class WeatherViewController: UIViewController {
   
-  let weatherService = WeatherService()
-  
   @IBOutlet weak var collectionView: UICollectionView! {
     didSet {
       collectionView.dataSource = self
@@ -18,9 +16,16 @@ class WeatherViewController: UIViewController {
     }
   }
   
+  let weatherService = WeatherService()
+  var weathers = [Weather]()
+  
+//  MARK: - viewDidLoad
   override func viewDidLoad() {
     super.viewDidLoad()
-    weatherService.loadWeatherData(city: "Moscow")
+    weatherService.loadWeatherData(city: "Moscow") { [weak self] weather in
+      self?.weathers = weather
+      self?.collectionView.reloadData()
+    }
   }
   
   
@@ -43,13 +48,12 @@ extension WeatherViewController: UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 10
+    return weathers.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-    cell.weather.text = "30 C"
-    cell.time.text = "30.08.2017 18:00"
+    cell.configure(whithWeather: weathers[indexPath.row])
     return cell
   }
   

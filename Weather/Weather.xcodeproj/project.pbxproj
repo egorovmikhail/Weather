@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		813DCE2D258B6F26008232BB /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DCE2C258B6F26008232BB /* Weather.swift */; };
 		8156CD06258A500B004F6159 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8156CD05258A500B004F6159 /* Alamofire */; };
 		8156CD0D258A569D004F6159 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8156CD0C258A569D004F6159 /* Realm */; };
 		8156CD0F258A569D004F6159 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8156CD0E258A569D004F6159 /* RealmSwift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		813DCE2C258B6F26008232BB /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		8156CD11258A5891004F6159 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		817A54A7258A21AB003165F3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81BB78EB2588CF1800BFC4A1 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,13 +94,14 @@
 				81FDBFD82589A0A600056413 /* AllCityes */,
 				81BB78F72588CF1A00BFC4A1 /* Assets.xcassets */,
 				81BB78F42588CF1800BFC4A1 /* Main.storyboard */,
+				813DCE2C258B6F26008232BB /* Weather.swift */,
 				81BB78FC2588CF1A00BFC4A1 /* Info.plist */,
 				81EC2E1D258A2E84000CF620 /* WeekDayPicker.swift */,
 				817A54A7258A21AB003165F3 /* GradientView.swift */,
 				81BB78EE2588CF1800BFC4A1 /* AppDelegate.swift */,
 				81BB78F22588CF1800BFC4A1 /* LoginFormController.swift */,
-				81BB78F92588CF1A00BFC4A1 /* LaunchScreen.storyboard */,
 				8156CD11258A5891004F6159 /* WeatherService.swift */,
+				81BB78F92588CF1A00BFC4A1 /* LaunchScreen.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				81BB78F32588CF1800BFC4A1 /* LoginFormController.swift in Sources */,
 				8156CD12258A5891004F6159 /* WeatherService.swift in Sources */,
 				81EC2E1E258A2E84000CF620 /* WeekDayPicker.swift in Sources */,
+				813DCE2D258B6F26008232BB /* Weather.swift in Sources */,
 				81CF6EC82589A3CA007450AF /* AllCityesViewController.swift in Sources */,
 				81CF6ED02589A589007450AF /* WeatherCell.swift in Sources */,
 				81BB78EF2588CF1800BFC4A1 /* AppDelegate.swift in Sources */,

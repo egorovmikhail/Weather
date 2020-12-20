@@ -17,6 +17,9 @@ class LoginFormController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+      loginField.text = "admin"       // Удалить
+      passwordField.text = "123456"   // Удалить
 
         NotificationCenter.default.addObserver(
             self,
@@ -67,5 +70,7 @@ class LoginFormController: UIViewController {
     @objc func keyboardWillBeHidden(notification: Notification) {
         scrollBottomConstraint.constant = 0
     }
+//  MARK: -
+  
 }
 

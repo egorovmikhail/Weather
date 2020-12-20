@@ -15,7 +15,7 @@ class WeatherService {
   let apiKey = "8eb2bf7c277416368b75c686b2484892"
   
   // метод для загрузки данных, в качестве аргументов получает город
-  func loadWeatherData(city: String){
+  func loadWeatherData(city: String, completion: @escaping ([Weather]) -> ()){
     
     // путь для получения погоды за 5 дней
     let path = "/data/2.5/forecast"
@@ -33,8 +33,11 @@ class WeatherService {
     
     
     
-    AF.request(url, method: .get, parameters: parameters).responseJSON { repsonse in
-      print(repsonse.value as Any)
+    AF.request(url, method: .get, parameters: parameters).responseData
+    { repsonse in
+      guard let data = repsonse.value else {return}
+      let weather = try! JSONDecoder().decode(WeatherResponse.self, from: data).list
+      completion(weather)
     }
     
   }
