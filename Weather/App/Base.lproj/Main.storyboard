@@ -53,8 +53,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kox-xV-tam">
-                                        <rect key="frame" x="184" y="394.5" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="80" y="375.5" width="254" height="33"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Log In"/>
                                         <connections>
                                             <segue destination="pDp-W4-zmO" kind="show" identifier="loginSegue" id="cAk-xV-9SQ"/>
                                         </connections>
@@ -77,24 +80,32 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYf-Cj-2mb">
+                                        <rect key="frame" x="169" y="433.5" width="76" height="39"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <state key="normal" title="Sign Up"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oCu-EI-AHH" firstAttribute="centerX" secondItem="dzL-e4-A7R" secondAttribute="centerX" id="4sl-ra-aws"/>
+                                    <constraint firstAttribute="bottom" secondItem="oYf-Cj-2mb" secondAttribute="bottom" constant="20" id="BGL-AJ-9EB"/>
                                     <constraint firstItem="viZ-mj-mmL" firstAttribute="top" secondItem="dzL-e4-A7R" secondAttribute="top" constant="85" id="ByT-bH-3Wm"/>
                                     <constraint firstItem="oCu-EI-AHH" firstAttribute="top" secondItem="y0Z-fc-3dY" secondAttribute="bottom" constant="8" symbolic="YES" id="DwC-eE-VTt"/>
                                     <constraint firstItem="JZK-2s-xMS" firstAttribute="leading" secondItem="dzL-e4-A7R" secondAttribute="leading" constant="80" id="Fna-K7-CPK"/>
                                     <constraint firstItem="65I-ND-MIY" firstAttribute="centerX" secondItem="dzL-e4-A7R" secondAttribute="centerX" id="Fsj-44-mrD"/>
+                                    <constraint firstItem="oYf-Cj-2mb" firstAttribute="centerX" secondItem="dzL-e4-A7R" secondAttribute="centerX" id="G18-TT-m6z"/>
+                                    <constraint firstItem="kox-xV-tam" firstAttribute="leading" secondItem="2w3-yc-ts1" secondAttribute="leading" constant="80" id="G5H-i9-wn4"/>
                                     <constraint firstItem="y0Z-fc-3dY" firstAttribute="top" secondItem="JZK-2s-xMS" secondAttribute="bottom" constant="24" id="Hfj-rX-GcM"/>
                                     <constraint firstItem="viZ-mj-mmL" firstAttribute="centerX" secondItem="dzL-e4-A7R" secondAttribute="centerX" id="MEJ-ey-gmj"/>
                                     <constraint firstAttribute="trailing" secondItem="JZK-2s-xMS" secondAttribute="trailing" constant="80" id="PZo-rs-8w5"/>
                                     <constraint firstItem="JZK-2s-xMS" firstAttribute="centerX" secondItem="dzL-e4-A7R" secondAttribute="centerX" id="Qbe-Ky-MjC"/>
-                                    <constraint firstItem="kox-xV-tam" firstAttribute="centerX" secondItem="dzL-e4-A7R" secondAttribute="centerX" id="Qzq-YE-fHo"/>
                                     <constraint firstItem="65I-ND-MIY" firstAttribute="top" secondItem="viZ-mj-mmL" secondAttribute="bottom" constant="57" id="ZuI-ao-6fv"/>
-                                    <constraint firstItem="kox-xV-tam" firstAttribute="top" secondItem="oCu-EI-AHH" secondAttribute="bottom" constant="64" id="aPQ-e0-8Yl"/>
+                                    <constraint firstItem="kox-xV-tam" firstAttribute="top" secondItem="oCu-EI-AHH" secondAttribute="bottom" constant="45" id="aPQ-e0-8Yl"/>
                                     <constraint firstItem="y0Z-fc-3dY" firstAttribute="centerX" secondItem="dzL-e4-A7R" secondAttribute="centerX" id="d9k-cz-E4M"/>
                                     <constraint firstItem="JZK-2s-xMS" firstAttribute="top" secondItem="65I-ND-MIY" secondAttribute="bottom" constant="8" symbolic="YES" id="fPG-9i-WU5"/>
+                                    <constraint firstItem="2w3-yc-ts1" firstAttribute="trailing" secondItem="kox-xV-tam" secondAttribute="trailing" constant="80" id="pFa-dI-qtU"/>
                                     <constraint firstAttribute="trailing" secondItem="oCu-EI-AHH" secondAttribute="trailing" constant="80" id="rRJ-Eo-bwM"/>
-                                    <constraint firstAttribute="bottom" secondItem="kox-xV-tam" secondAttribute="bottom" constant="20" id="uyx-x3-Q3o"/>
+                                    <constraint firstItem="oYf-Cj-2mb" firstAttribute="top" secondItem="kox-xV-tam" secondAttribute="bottom" constant="25" id="uzM-dd-HbR"/>
                                     <constraint firstItem="oCu-EI-AHH" firstAttribute="leading" secondItem="dzL-e4-A7R" secondAttribute="leading" constant="80" id="zgk-hb-590"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="avu-lW-boJ"/>
@@ -154,14 +165,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCityesCell" id="66b-pR-Lc6" customClass="MyCityesCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="66b-pR-Lc6" id="GwV-jS-Utt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHI-HY-nkK">
-                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="42" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -307,14 +318,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllCityesCell" id="YMV-xD-Q2M" customClass="AllCityesCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YMV-xD-Q2M" id="GTl-Nf-Wvq">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImL-sl-kG0">
-                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="42" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -360,6 +371,9 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
