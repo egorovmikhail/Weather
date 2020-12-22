@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class MyCityesViewController: UIViewController {
   
@@ -15,6 +17,9 @@ class MyCityesViewController: UIViewController {
       tableViev.delegate = self
     }
   }
+  
+//  private var cities = [FirebaseCity]()
+//  private let ref = Database.database().reference(withPath: "cities")
   
   var cities = [String]()
   
@@ -33,6 +38,17 @@ class MyCityesViewController: UIViewController {
           tableViev.reloadData()
         }
       }
+    }
+  }
+  
+  @IBAction func logOutButtonPressed(_ sender: UIBarButtonItem) {
+    do {
+      // 1
+      try Auth.auth().signOut()
+      self.dismiss(animated: true, completion: nil)
+    } catch (let error) {
+      // 2
+      print("Auth sign out failed: \(error)")
     }
   }
 }
