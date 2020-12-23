@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 class WeatherViewController: UIViewController {
-  
+  //  MARK: - UICollectionView
   @IBOutlet weak var collectionView: UICollectionView! {
     didSet {
       collectionView.dataSource = self
@@ -17,35 +17,44 @@ class WeatherViewController: UIViewController {
     }
   }
   
+  //  MARK: - PROPERTIES
   let weatherService = WeatherService()
-  var weathers = [Weather]()
+  var token: NotificationToken?
+  var cityName = ""
+  var weathers: List<Weather>!
   
-//  MARK: - viewDidLoad
+  //  MARK: - viewDidLoad
   override func viewDidLoad() {
     super.viewDidLoad()
-    loadData()
-    weatherService.loadWeatherData(city: "Moscow") { [weak self] in
-      self?.loadData()
-    }
+    weatherService.loadWeatherData(city: cityName)
+    pairTableAndRealm()
   }
   
-//  MARK: - METHODS
-  func loadData() {
-    do {
-      let realm = try Realm()
-      
-      let weathers = realm.objects(Weather.self).filter("city == %@", "Moscow")
-      
-      self.weathers = Array(weathers)
-      collectionView.reloadData()
-    } catch {
-      // если произошла ошибка, выводим ее в консоль
-      print(error)
+  //  MARK: - pairTableAndRealm
+  func pairTableAndRealm() {
+    guard let realm = try? Realm(), let city = realm.object(ofType: City.self, forPrimaryKey: cityName) else { return }
+    
+    weathers = city.weathers
+    
+    token = weathers.observe { [weak self] (changes: RealmCollectionChange) in
+      guard let collectionView = self?.collectionView else { return }
+      switch changes {
+        case .initial:
+          collectionView.reloadData()
+        case .update(_, let deletions, let insertions, let modifications):
+          collectionView.performBatchUpdates({
+            collectionView.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+            collectionView.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
+            collectionView.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0) }))
+          }, completion: nil)
+        case .error(let error):
+          fatalError("\(error)")
+      }
     }
   }
-  
-}
+} //  : - viewController
 
+//  MARK: - UICollectionViewDataSource
 extension WeatherViewController: UICollectionViewDataSource {
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -64,6 +73,7 @@ extension WeatherViewController: UICollectionViewDataSource {
   
 }
 
+//  MARK: - UICollectionViewDelegate
 extension WeatherViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     

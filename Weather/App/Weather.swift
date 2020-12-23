@@ -8,6 +8,16 @@
 import Foundation
 import RealmSwift
 
+class City: Object {
+  @objc dynamic var name = ""
+  let weathers = List<Weather>()
+  
+  override static func primaryKey() -> String? {
+    return "name"
+  }
+}
+
+
 class WeatherResponse: Decodable {
   let list: [Weather]
 }

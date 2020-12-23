@@ -16,11 +16,11 @@ class WeatherService {
   let apiKey = "8eb2bf7c277416368b75c686b2484892"
   
   // метод для загрузки данных, в качестве аргументов получает город
-  func loadWeatherData(city: String, completion: @escaping () -> ()){
+  func loadWeatherData(city: String){
     
     // путь для получения погоды за 5 дней
     let path = "/data/2.5/forecast"
-    // параметры, город, единицы измерения градусы, ключ для доступа к сервису
+    // параметры, город, единицы измерения (градусы), ключ для доступа к сервису
     let parameters: Parameters = [
       "q": city,
       "units": "metric",
@@ -28,19 +28,19 @@ class WeatherService {
     ]
     
     // составляем URL из базового адреса сервиса и конкретного пути к ресурсу
-    let url = baseUrl + path
+    let url = baseUrl+path
     
     // делаем запрос
-    AF.request(url, method: .get, parameters: parameters).responseData
-    { repsonse in
-      guard let data = repsonse.value else {return}
+    AF.request(url, method: .get, parameters: parameters).responseData { [weak self] repsons in
+      guard let data = repsons.value else { return }
       let weather = try! JSONDecoder().decode(WeatherResponse.self, from: data).list
       weather.forEach { $0.city = city }
-      self.saveWeatherData(weather, city)
-      completion()
+      
+      self?.saveWeatherData(weather, city)
     }
     
   }
+
   
   // сохранение погодных данных в realm
   func saveWeatherData(_ weathers: [Weather], _ city: String) {
@@ -48,25 +48,23 @@ class WeatherService {
     do {
       // получаем доступ к хранилищу
       let realm = try Realm()
-      
+      // получаем город
+      guard let city = realm.object(ofType: City.self, forPrimaryKey: city) else { return }
       // все старые погодные данные для текущего города
-      let oldWeathers = realm.objects(Weather.self).filter("city == %@", city)
-      
+      let oldWeathers = city.weathers
       // начинаем изменять хранилище
       realm.beginWrite()
-      
       // удаляем старые данные
       realm.delete(oldWeathers)
-      
       // кладем все объекты класса погоды в хранилище
-      realm.add(weathers)
-      
+      city.weathers.append(objectsIn: weathers)
       // завершаем изменение хранилища
       try realm.commitWrite()
     } catch {
       // если произошла ошибка, выводим ее в консоль
       print(error)
     }
+
   }
 
 }
