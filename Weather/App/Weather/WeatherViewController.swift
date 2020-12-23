@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class WeatherViewController: UIViewController {
   
@@ -22,22 +23,26 @@ class WeatherViewController: UIViewController {
 //  MARK: - viewDidLoad
   override func viewDidLoad() {
     super.viewDidLoad()
-    weatherService.loadWeatherData(city: "Moscow") { [weak self] weather in
-      self?.weathers = weather
-      self?.collectionView.reloadData()
+    loadData()
+    weatherService.loadWeatherData(city: "Moscow") { [weak self] in
+      self?.loadData()
     }
   }
   
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
+//  MARK: - METHODS
+  func loadData() {
+    do {
+      let realm = try Realm()
+      
+      let weathers = realm.objects(Weather.self).filter("city == %@", "Moscow")
+      
+      self.weathers = Array(weathers)
+      collectionView.reloadData()
+    } catch {
+      // если произошла ошибка, выводим ее в консоль
+      print(error)
+    }
+  }
   
 }
 

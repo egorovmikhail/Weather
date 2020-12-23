@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
 class WeatherService {
   // базовый URL сервиса
@@ -15,7 +16,7 @@ class WeatherService {
   let apiKey = "8eb2bf7c277416368b75c686b2484892"
   
   // метод для загрузки данных, в качестве аргументов получает город
-  func loadWeatherData(city: String, completion: @escaping ([Weather]) -> ()){
+  func loadWeatherData(city: String, completion: @escaping () -> ()){
     
     // путь для получения погоды за 5 дней
     let path = "/data/2.5/forecast"
@@ -30,16 +31,43 @@ class WeatherService {
     let url = baseUrl + path
     
     // делаем запрос
-    
-    
-    
     AF.request(url, method: .get, parameters: parameters).responseData
     { repsonse in
       guard let data = repsonse.value else {return}
       let weather = try! JSONDecoder().decode(WeatherResponse.self, from: data).list
-      completion(weather)
+      weather.forEach { $0.city = city }
+      self.saveWeatherData(weather, city)
+      completion()
     }
     
   }
+  
+  // сохранение погодных данных в realm
+  func saveWeatherData(_ weathers: [Weather], _ city: String) {
+    // обработка исключений при работе с хранилищем
+    do {
+      // получаем доступ к хранилищу
+      let realm = try Realm()
+      
+      // все старые погодные данные для текущего города
+      let oldWeathers = realm.objects(Weather.self).filter("city == %@", city)
+      
+      // начинаем изменять хранилище
+      realm.beginWrite()
+      
+      // удаляем старые данные
+      realm.delete(oldWeathers)
+      
+      // кладем все объекты класса погоды в хранилище
+      realm.add(weathers)
+      
+      // завершаем изменение хранилища
+      try realm.commitWrite()
+    } catch {
+      // если произошла ошибка, выводим ее в консоль
+      print(error)
+    }
+  }
+
 }
 
